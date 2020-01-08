@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using WebSales.Data;
 
 namespace WebSales
 {
@@ -24,6 +26,10 @@ namespace WebSales
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<WebSalesContext>(options =>
+             options.UseMySql(Configuration.GetConnectionString("WebSalesContext"), builder =>
+                builder.MigrationsAssembly("WebSales")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

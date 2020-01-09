@@ -9,6 +9,7 @@ namespace WebSales.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
 
         public Department()
         {
@@ -18,6 +19,21 @@ namespace WebSales.Models
         {
             Id = id;
             Name = name;
+        }
+
+        public void addSeller(Seller seller)
+        {
+            Sellers.Add(seller);
+        }
+
+        public void removeSeller(Seller seller)
+        {
+            Sellers.Remove(seller);
+        }
+
+        public double totalSales(DateTime Initial, DateTime Final)
+        {
+            return Sellers.Sum(x => x.totalSales(Initial, Final));
         }
     }
 }

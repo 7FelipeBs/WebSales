@@ -155,3 +155,4 @@ C:\Users\felip\source\Web Project\WebSales\WebSales\obj\Debug\netcoreapp3.1\Razo
 C:\Users\felip\source\Web Project\WebSales\WebSales\obj\Debug\netcoreapp3.1\Razor\Views\Departments\Edit.cshtml.g.cs
 C:\Users\felip\source\Web Project\WebSales\WebSales\obj\Debug\netcoreapp3.1\Razor\Views\Departments\Index.cshtml.g.cs
 C:\Users\felip\source\Web Project\WebSales\WebSales\obj\Debug\netcoreapp3.1\Razor\Views\Sellers\Index.cshtml.g.cs
+C:\Users\felip\source\Web Project\WebSales\WebSales\obj\Debug\netcoreapp3.1\Razor\Views\Sellers\Create.cshtml.g.cs

@@ -21,5 +21,11 @@ namespace WebSales.Services
         {
             return await _Context.Seller.ToListAsync();
         }
+
+        public async Task InsertAsync(Seller obj)
+        {
+            _Context.Add(obj);
+            await _Context.SaveChangesAsync();
+        }
     }
 }

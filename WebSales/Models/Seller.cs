@@ -27,10 +27,14 @@ namespace WebSales.Models
         [Required(ErrorMessage = "{0} Required")]
         [Range(100.00, long.MaxValue, ErrorMessage = "{0} must be from {1} to {2}")]
         [Display(Name = "Base Salary")]
-        [DisplayFormat(DataFormatString ="{0:F2}")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double BaseSalary { get; set; }
+
+        public int DepartmentId { get; set; }
         public Department Department { get; set; }
         public ICollection<SalesRecord> SalesRecords { get; set; } = new List<SalesRecord>();
+
+
         public Seller()
         {
         }

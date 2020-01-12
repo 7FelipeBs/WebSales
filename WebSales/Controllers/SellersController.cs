@@ -6,36 +6,46 @@ using Microsoft.AspNetCore.Mvc;
 using WebSales.Services;
 using WebSales.Models;
 using WebSales.Data;
+using WebSales.Models.ViewModels;
 
 namespace WebSales.Controllers
 {
     public class SellersController : Controller
     {
         private readonly SellerService _sellerService;
-        private readonly WebSalesContext _webSalesContext;
+        private readonly DepartmentService _departmentService;
 
-        public SellersController(SellerService sellerService, WebSalesContext webSalesContext)
+        public SellersController(SellerService sellerService, DepartmentService departmentService)
         {
             _sellerService = sellerService;
-            _webSalesContext = webSalesContext;
+            _departmentService = departmentService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var result = await _sellerService.FindAllAsync();
-
-            return View(result);
+            var list = await _sellerService.FindAllAsync();
+            return View(list);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var departments = await _departmentService.FindAllAsync();
+            var viewModel = new SellerFormViewModel { Departments = departments };
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Seller seller)
         {
+            if (!ModelState.IsValid)
+            {
+                var departments = await _departmentService.FindAllAsync();
+                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
+                return View(viewModel);
+
+            }
+
             await _sellerService.InsertAsync(seller);
             return RedirectToAction(nameof(Index));
         }
